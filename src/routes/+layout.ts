@@ -5,7 +5,13 @@ import { PUBLIC_SUPABASE_ANON_KEY, PUBLIC_SUPABASE_URL } from '$env/static/publi
 import type { LayoutLoad } from './$types';
 import type { Database } from '../../types/supabase';
 
-export const load: LayoutLoad = async ({ data, fetch }) => {
+export const load: LayoutLoad = async ({ data, depends, fetch }) => {
+	/**
+	 * Declare a dependency so the layout can be invalidated, for example, on
+	 * session refresh.
+	 */
+	depends('supabase:auth');
+
 	const supabase = isBrowser()
 		? createBrowserClient<Database>(PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_ANON_KEY, {
 				global: {
