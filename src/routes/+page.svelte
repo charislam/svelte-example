@@ -1,13 +1,18 @@
 <script>
-    export let data
-    $: ({ user } = data)
+	export let data;
+	$: ({ countries, user } = data);
 </script>
 
 <h1>Welcome to Supabase{user ? `, ${user.email}!` : '!'}</h1>
 <nav>
-{#if user}
-<a href="/private">Private pages</a>
-{:else}
-<a href="/auth">Login</a>
-{/if}
+	{#if user}
+		<a href="/private">Private pages</a>
+	{:else}
+		<a href="/auth">Login</a>
+	{/if}
 </nav>
+<ul>
+	{#each countries as country}
+		<li>{country.name}</li>
+	{/each}
+</ul>

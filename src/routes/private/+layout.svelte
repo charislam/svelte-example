@@ -1,6 +1,4 @@
 <script>
-	import { goto, invalidate } from '$app/navigation';
-
 	export let data;
 	$: ({ supabase } = data);
 
@@ -14,6 +12,7 @@
 
 <header>
 	<nav>
+		<a href="/">Home</a>
 		<a href="/private">Private</a>
 		<a href="/private/nested">Nested</a>
 	</nav>
