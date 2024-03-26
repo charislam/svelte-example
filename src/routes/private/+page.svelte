@@ -7,7 +7,8 @@
 	export let data: PageData;
 	$: ({ notes, supabase, user } = data);
 
-	const handleSubmit: EventHandler<SubmitEvent, HTMLFormElement> = async (evt) => {
+	let handleSubmit: EventHandler<SubmitEvent, HTMLFormElement>;
+	$: handleSubmit = async (evt) => {
 		evt.preventDefault();
 		if (!evt.target) return;
 
