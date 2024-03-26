@@ -10,6 +10,7 @@
 	{:else}
 		<a href="/auth">Login</a>
 	{/if}
+	<a href="/private/nested">Nested test</a>
 </nav>
 <ul>
 	{#each countries as country}
