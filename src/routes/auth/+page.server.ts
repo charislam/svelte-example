@@ -28,5 +28,18 @@ export const actions: Actions = {
 		} else {
 			redirect(303, '/private');
 		}
+	},
+	oauth: async ({ request, locals: { supabase } }) => {
+		const { data, error } = await supabase.auth.signInWithOAuth({
+			provider: 'bitbucket',
+			options: {
+				redirectTo: `${new URL(request.url).origin}/api/auth/callback`
+			}
+		});
+		if (data.url) {
+			redirect(303, data.url);
+		} else {
+			console.error(error);
+		}
 	}
 };
